@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Role;
 
 class RoleController extends Controller
 {
@@ -11,7 +12,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::withTrashed()->orderBy('id', 'asc')->get();
+
         return view('roles.index', compact('roles'));
     }
 
@@ -73,6 +75,12 @@ class RoleController extends Controller
         return redirect()->route('roles.index')->with('success', 'Rol actualizado exitosamente.');
     }
 
+    public function confirmDelete(string $id)
+    {
+        $role = Role::findOrFail($id);
+        return view('roles.confirm', compact('role'));
+    }
+
     /**
      * Remove the specified resource from storage.
      */
@@ -83,4 +91,14 @@ class RoleController extends Controller
 
         return redirect()->route('roles.index')->with('success', 'Rol eliminado exitosamente.');
     }
+
+    public function restore($id)
+    {
+        $role = Role::onlyTrashed()->findOrFail($id);
+        $role->restore();
+
+        return redirect()->route('roles.index')->with('success', 'Rol restaurado exitosamente.');
+    }
+
+
 }

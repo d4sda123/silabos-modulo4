@@ -20,7 +20,7 @@
 <body class="font-sans antialiased">
     <div class="flex min-h-screen bg-gray-100">
         <!-- Sidebar -->
-        <aside x-data="{ open: true }" :class="open ? 'w-64' : 'w-20'" class="bg-gray-800 text-white transition-all duration-300 min-h-screen relative">
+        <aside x-data="{ open: false }" :class="open ? 'w-64' : 'w-18'" class="bg-gray-800 text-white transition-all duration-300 min-h-screen relative">
             <div class="flex justify-between items-center px-6 py-4 bg-gray-900">
                 <div x-show="open" class="text-md font-semibold">
                     Menu
@@ -35,17 +35,17 @@
             <!-- Sidebar Links -->
             <ul class="mt-4 space-y-2 text-sm">
             <li class="px-6 py-2 flex items-center space-x-4 text-gray-300 hover:text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <a href="{{ route('dashboard') }}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l9-9m0 0l9 9m-9-9v18" />
-                </svg>
-                <span x-show="open">Inicio</span>
+                </svg></a>
+                <span x-show="open"><a href="{{ route('dashboard') }}">Inicio</a></span>
             </li>
 
                 <li class="px-6 py-2 flex items-center space-x-4 text-gray-300 hover:text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <a href="{{ route('roles.index') }}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M16 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h9a2 2 0 002-2v-2m4 0h1.5a1.5 1.5 0 100-3H20m-4 0h4v1m-4 0h4v-1m-4 1h4v1m-4-1h1.5a1.5 1.5 0 000-3H16" />
-                    </svg>
-                    <span x-show="open">Roles</span>
+                    </svg></a>
+                    <span x-show="open"><a href="{{ route('roles.index') }}">Roles</a></span>
                 </li>
                 <li class="px-6 py-2 flex items-center space-x-4 text-gray-300 hover:text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -59,7 +59,7 @@
         
         <!-- Main Content Section -->
         <main class="flex-1 bg-gray-100 p-8">
-            {{ $slot }} <!-- Aquí irá el contenido de la vista -->
+            @yield('content')
         </main>
     </div>
 </body>
