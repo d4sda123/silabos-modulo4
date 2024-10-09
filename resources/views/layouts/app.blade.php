@@ -13,24 +13,56 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <!-- Import Alpine.js -->
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.3/dist/cdn.min.js"></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            <livewire:layout.navigation />
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+        <div class="min-h-screen bg-gray-100" x-data="{ open: false }"> <!-- Alpine.js data -->
+            <!-- Sidebar and Content Container -->
+            <div class="flex">
+                <!-- Sidebar -->
+                <aside :class="open ? 'block' : 'hidden lg:block'" class="bg-gray-800 text-white w-64 min-h-screen p-4">
+                    <div class="text-lg font-semibold mb-4">
+                        Sidebar Menu
                     </div>
-                </header>
-            @endif
+                    <ul>
+                        <li class="mb-2">
+                            <a href="{{ route('dashboard') }}" class="text-gray-300 hover:text-white block px-4 py-2 rounded-md">
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('roles.index') }}" class="text-gray-300 hover:text-white block px-4 py-2 rounded-md">
+                                Roles
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                <!-- Main Content -->
+                <div class="flex-1">
+                    <header class="bg-white border-b border-gray-100 flex justify-between items-center p-4">
+                        <!-- Toggle button for mobile view -->
+                        <button @click="open = !open" class="text-gray-500 focus:outline-none lg:hidden">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+
+                        <!-- Page Header (like before) -->
+                        @if (isset($header))
+                            <div class="font-semibold text-lg text-gray-800">
+                                {{ $header }}
+                            </div>
+                        @endif
+                    </header>
+
+                    <!-- Page Content -->
+                    <main class="p-6">
+                        {{ $slot }}
+                    </main>
+                </div>
+            </div>
         </div>
     </body>
 </html>
