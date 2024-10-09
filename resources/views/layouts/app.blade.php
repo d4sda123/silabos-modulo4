@@ -47,6 +47,14 @@
                     </svg></a>
                     <span x-show="open"><a href="{{ route('roles.index') }}">Roles</a></span>
                 </li>
+
+                <li class="px-6 py-2 flex items-center space-x-4 text-gray-300 hover:text-white">
+                    <a href="{{ route('users.index') }}"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h9a2 2 0 002-2v-2m4 0h1.5a1.5 1.5 0 100-3H20m-4 0h4v1m-4 0h4v-1m-4 1h4v1m-4-1h1.5a1.5 1.5 0 000-3H16" />
+                    </svg></a>
+                    <span x-show="open"><a href="{{ route('users.index') }}">Asignar Rol a Usuario</a></span>
+                </li>
+
                 <li class="px-6 py-2 flex items-center space-x-4 text-gray-300 hover:text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 12c2.28 0 4.14-1.86 4.14-4.14S14.28 3.72 12 3.72 7.86 5.58 7.86 7.86 9.72 12 12 12zm0 2.14c-2.86 0-8.57 1.44-8.57 4.29V20h17.14v-1.57c0-2.85-5.71-4.29-8.57-4.29z" />
