@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('roles', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();  // Nombre del rol, por ejemplo 'admin', 'user', etc.
+            $table->id(); // Esto generará el campo id (primary key)
+            $table->string('name'); // Campo para el nombre del rol
             $table->timestamps();
-        });        
+        });
     }
 
     /**

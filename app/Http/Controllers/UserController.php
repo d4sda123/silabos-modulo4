@@ -11,7 +11,7 @@ class UserController extends Controller
     // Listar usuarios
     public function index()
     {
-        $users = User::with('role')->get(); // Asumiendo que tienes una relación llamada 'role' en el modelo User
+        $users = User::with('role')->orderBy('id', 'asc')->get(); // Asumiendo que tienes una relación llamada 'role' en el modelo User
         return view('users.index', compact('users'));
     }
     
@@ -29,14 +29,14 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
-            'role' => 'required|integer',
+            'role_id' => 'required|integer',
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role' => $request->role,
+            'role_id' => $request->role_id, // Cambia 'role' por 'role_id'
         ]);
 
         return redirect()->route('users.index')->with('success', 'Usuario creado correctamente.');
@@ -52,19 +52,20 @@ class UserController extends Controller
 
 
     // Actualizar un usuario existente
+    // Actualizar un usuario existente
     public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,'.$id,
-            'role' => 'required|integer',
+            'role_id' => 'required|integer',
         ]);
 
         $user = User::findOrFail($id);
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'role' => $request->role,
+            'role_id' => $request->role_id, // Cambia 'role' por 'role_id'
         ]);
 
         return redirect()->route('users.index')->with('success', 'Usuario actualizado correctamente.');

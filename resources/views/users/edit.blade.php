@@ -20,9 +20,9 @@
 
             <div class="mb-4">
                 <label for="role" class="block">Rol:</label>
-                <select name="role" id="role" class="border rounded w-full">
+                <select name="role_id" id="role_id" class="border rounded w-full">
                     @foreach($roles as $role)
-                        <option value="{{ $role->id }}" {{ $user->role == $role->id ? 'selected' : '' }}>
+                        <option value="{{ $role->id }}" {{ $user->role_id == $role->id ? 'selected' : '' }}>
                             {{ $role->name }}
                         </option>
                     @endforeach

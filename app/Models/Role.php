@@ -12,9 +12,9 @@ class Role extends Model
 
     protected $fillable = ['name'];
     
-    public function users()
+    public function user()
     {
-        return $this->hasMany(User::class, 'role');
+        return $this->hasMany(User::class, 'role_id' , 'id');
     }
 
     public function isRole(string $roleName): bool

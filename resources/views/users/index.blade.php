@@ -16,11 +16,11 @@
             </thead>
             <tbody>
                 @foreach($users as $user)
-                    <tr>
+                    <tr class="text-center">
                         <td class="py-2 px-4 border-b">{{ $user->id }}</td>
-                        <td class="py-2 px-4 border-b">{{ $user->name }}</td>
+                        <td class="text-left py-2 px-4 border-b">{{ $user->name }}</td>
                         <td class="py-2 px-4 border-b">{{ $user->email }}</td>
-                        <td class="py-2 px-4 border-b">{{ $user->role ? $user->role->name : 'Sin rol asignado' }}</td> <!-- Mostrar el nombre del rol -->
+                        <td class="px-4 border-b">{{ $user->role ? $user->role->name : 'Sin rol asignado' }}</td>
                         <td class="py-2 px-4 border-b">
                             <a href="{{ route('users.edit', $user->id) }}" class="text-blue-500">Editar</a>
                             <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline-block">
